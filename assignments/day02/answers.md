@@ -8,6 +8,7 @@ Docker is a tool designed to make it easier to create, deploy, and run applicati
 * Virtual Machine
 * Docker Container
 * Docker Image
+
 A VM creates a whole virtual os, while Docker containers are run by a single os kernel and only require things not already running on the host computer. 
 Containers and images are in many ways like Classes and Objects. A running instance of an image is a container.
 

@@ -1,6 +1,6 @@
 # Docker Exercise
 TODO: What was this assignment about
-    Learning the basics of creating a Docker container and learning about the benefits of containers.
+Learning the basics of creating a Docker container and learning about the benefits of containers.
 
 ## What is Docker?
 TODO: short description

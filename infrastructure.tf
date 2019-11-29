@@ -1,10 +1,13 @@
-# TODO Comment 2-3 sentences.
+# Configuring the aws provider with proper credentials. For authentication the shared_credentials_file variable is used.
 provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
   region                  = "us-east-1"
 }
 
-# TODO Comment 2-3 sentences.
+# A resource describes one or more infrastructure objects
+
+# Type: "aws_security_group", local name: "game_security_group", 
+# This resource block creates a security group, gives it a name("GameSecurityGroup") and defines rules for ingress and egress filtering for the group.
 resource "aws_security_group" "game_security_group" {
   name = "GameSecurityGroup"
 
@@ -30,7 +33,10 @@ resource "aws_security_group" "game_security_group" {
   }
 }
 
-# TODO Comment 2-3 sentences.
+# Type: "aws_instance", local name: "game_server", 
+# This resource bloc creates an EC2 instance of type "t2.micro" and associates it with the previously created security group above.
+# Then copies a Bash script and a Docker compose file and sends it to the EC2 instance using ssh.
+# Finally it sends a command to the EC2 instance that executes the Bash script(and the bash script in turn runs the Docker file), creating a new server.
 resource "aws_instance" "game_server" {
   ami                    = "ami-0ac019f4fcb7cb7e6"
   instance_type          = "t2.micro"
@@ -40,7 +46,7 @@ resource "aws_instance" "game_server" {
     Name = "GameServer"
   }
 
-  # TODO Comment 1-2 sentences.
+  # Copies "initialize_game_api_instance.sh" file to the EC2 instance using a ssh connection
   provisioner "file" {
     source      = "scripts/initialize_game_api_instance.sh"
     destination = "/home/ubuntu/initialize_game_api_instance.sh"
@@ -53,7 +59,7 @@ resource "aws_instance" "game_server" {
     }
   }
 
-  # TODO Comment 1-2 sentences.
+  # Copies "docker-compose.yml" file to the EC2 instance using a ssh connection
   provisioner "file" {
     source      = "docker-compose.yml"
     destination = "/home/ubuntu/docker-compose.yml"
@@ -71,7 +77,8 @@ resource "aws_instance" "game_server" {
   # Since it can take time for the SSH agent on machine to start up we let Terraform
   # handle the retry logic, it will try to connect to the agent until it is available
   # that way we know the instance is available through SSH after Terraform finishes.
-  # TODO Comment 1-2 sentences.
+
+  # Sends a command to the instance, commanding it to execute "initialize_game_api_instance.sh" script
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/ubuntu/initialize_game_api_instance.sh",
@@ -86,7 +93,9 @@ resource "aws_instance" "game_server" {
   }
 }
 
-# TODO Comment 1-2 sentences.
+# Output values are like the return values of a Terraform module
+# Identifier: "public_ip"
+# Returns the public_ip of the previously created sever("Game server")
 output "public_ip" {
   value = aws_instance.game_server.public_ip
 }

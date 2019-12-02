@@ -1,3 +1,5 @@
 terraform.tfstate
 tfplan
 scripts/terraform.tfstate.backup
+.terraform/
+terraform.tfstate.backup

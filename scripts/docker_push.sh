@@ -2,6 +2,6 @@
 
 GIT_COMMIT=$1
 
-docker push username/repo:$GIT_COMMIT
+docker push marius15/hgop:$GIT_COMMIT
 
 set -o errexit

@@ -1,6 +1,3 @@
-const deckConstructor = require('./deck.js');
-const dealerConstructor = require('./dealer.js');
-
 module.exports = (deck, dealer) => {
     dealer.shuffle(deck);
     let card0 = dealer.draw(deck);

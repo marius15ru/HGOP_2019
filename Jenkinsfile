@@ -5,9 +5,9 @@ node {
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
 
         echo 'I solemnly swear that I know not to run this without committing changes I want to keep!'
-        sh "git clean -dfxq"
-        sh "git stash"
-        sh "npm install"
-        sh "npm run eslint"
+        sh "cd game_api && git clean -dfxq"
+        sh "cd game_api && git stash"
+        sh "cd game_api && npm install"
+        sh "cd game_api && npm run eslint"
     }
 }

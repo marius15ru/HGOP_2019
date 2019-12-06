@@ -13,6 +13,7 @@ node {
     }
     stage("Build") {
         sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
+        bat "docker login -u marius15 -p Jardaber101"
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
     }
 }

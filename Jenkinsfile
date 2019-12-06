@@ -13,7 +13,9 @@ node {
     }
     stage("Build") {
         sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
-        sh "docker login -u marius15 -p Jardaber101"
+        withCredentials([usernamePassword( credentialsId: 'docker_hub_creds', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]){
+            sh "docker login -u $USER -p $PASSWORD"
+        }
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
     }
 }

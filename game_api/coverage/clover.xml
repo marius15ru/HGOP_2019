@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1575642097602" clover="3.2.0">
+  <project timestamp="1575642097602" name="All files">
+    <metrics statements="59" coveredstatements="55" conditionals="28" coveredconditionals="21" methods="14" coveredmethods="14" elements="101" coveredelements="90" complexity="0" loc="59" ncloc="59" packages="1" files="3" classes="3"/>
+    <file name="dealer.js" path="/Users/mariussaevarsson/Documents/HR/HGOP/game_api/dealer.js">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="13" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="5" count="102" type="stmt"/>
+      <line num="6" count="102" type="stmt"/>
+      <line num="7" count="102" type="stmt"/>
+      <line num="8" count="102" type="stmt"/>
+      <line num="9" count="102" type="stmt"/>
+      <line num="13" count="39" type="stmt"/>
+      <line num="14" count="39" type="stmt"/>
+    </file>
+    <file name="deck.js" path="/Users/mariussaevarsson/Documents/HR/HGOP/game_api/deck.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="13" type="stmt"/>
+    </file>
+    <file name="lucky21.js" path="/Users/mariussaevarsson/Documents/HR/HGOP/game_api/lucky21.js">
+      <metrics statements="47" coveredstatements="43" conditionals="28" coveredconditionals="21" methods="10" coveredmethods="10"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="13" type="stmt"/>
+      <line num="3" count="13" type="stmt"/>
+      <line num="4" count="13" type="stmt"/>
+      <line num="5" count="13" type="stmt"/>
+      <line num="15" count="13" type="stmt"/>
+      <line num="20" count="3" type="stmt"/>
+      <line num="21" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="31" count="1" type="cond" truecount="3" falsecount="1"/>
+      <line num="32" count="0" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="37" count="7" type="stmt"/>
+      <line num="38" count="7" type="stmt"/>
+      <line num="39" count="7" type="stmt"/>
+      <line num="40" count="20" type="stmt"/>
+      <line num="41" count="20" type="cond" truecount="2" falsecount="0"/>
+      <line num="42" count="7" type="stmt"/>
+      <line num="44" count="13" type="cond" truecount="1" falsecount="1"/>
+      <line num="46" count="7" type="stmt"/>
+      <line num="47" count="7" type="cond" truecount="4" falsecount="0"/>
+      <line num="48" count="6" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="52" count="7" type="stmt"/>
+      <line num="56" count="7" type="cond" truecount="2" falsecount="0"/>
+      <line num="57" count="5" type="stmt"/>
+      <line num="58" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="5" type="cond" truecount="1" falsecount="1"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="63" count="5" type="stmt"/>
+      <line num="65" count="2" type="stmt"/>
+      <line num="69" count="6" type="stmt"/>
+      <line num="70" count="6" type="stmt"/>
+      <line num="71" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="72" count="4" type="stmt"/>
+      <line num="73" count="2" type="stmt"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+      <line num="85" count="7" type="stmt"/>
+      <line num="86" count="7" type="stmt"/>
+      <line num="90" count="6" type="stmt"/>
+      <line num="91" count="6" type="stmt"/>
+    </file>
+  </project>
+</coverage>

@@ -3,3 +3,5 @@ tfplan
 scripts/terraform.tfstate.backup
 .terraform/
 terraform.tfstate.backup
+node_modules
+game_api/node_modules

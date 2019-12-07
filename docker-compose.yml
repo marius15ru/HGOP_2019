@@ -3,7 +3,7 @@ services:
   my_item_repository:
     image: marius15/hgop:${GIT_COMMIT}
     ports:
-    - '3000:3000'
+    - ${PORT}
     depends_on:
     - my_postgres_container
     environment:

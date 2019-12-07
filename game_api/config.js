@@ -1,4 +1,4 @@
-module.exports = function(context) {
+module.exports = function(context) { // eslint-disable-line
     return {
         // Postgres
         pgHost: process.env.POSTGRES_HOST || 'default_host',

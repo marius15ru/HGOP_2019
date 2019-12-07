@@ -55,6 +55,7 @@ module.exports = function(context) {
             });
             return;
         },
+        /*eslint-disable*/
         // Should call onSuccess with integer.
         getTotalNumberOfGames: (onSuccess, onError) => {
             onSuccess(0)
@@ -70,5 +71,6 @@ module.exports = function(context) {
             onSuccess(0)
             // TODO week 3
         },
+        /*eslint-enable*/
     }
 }

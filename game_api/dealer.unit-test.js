@@ -1,7 +1,7 @@
 function newRandom(randomReturnValues) {
     let i = 0;
     return {
-        randomInt: (min, max) => {
+        randomInt: (min, max) => {  // eslint-disable-line
             return randomReturnValues[i++];
         }
     };

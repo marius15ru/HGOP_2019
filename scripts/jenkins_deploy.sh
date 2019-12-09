@@ -8,7 +8,7 @@ mkdir -p /var/lib/jenkins/terraform/hgop/production/scripts
 rm -f /var/lib/jenkins/terraform/hgop/production/scripts/initialize_game_api_instance.sh
 cp scripts/initialize_game_api_instance.sh /var/lib/jenkins/terraform/hgop/production/scripts/initialize_game_api_instance.sh
 rm -f /var/lib/jenkins/terraform/hgop/production/scripts/docker_compose_up.sh
-cp scripts/docker_compose_up.sh /var/lib/jenkins/terraform/hgop/production/docker_compose_up.sh  && echo -e "Cp Sucess" || echo -e "Cp Fail"
+cp scripts/docker_compose_up.sh /var/lib/jenkins/terraform/hgop/production/scripts/docker_compose_up.sh  && echo -e "Cp Sucess" || echo -e "Cp Fail"
 rm -f /var/lib/jenkins/terraform/hgop/production/docker-compose.yml
 cp docker-compose.yml /var/lib/jenkins/terraform/hgop/production/docker-compose.yml
 
@@ -23,10 +23,7 @@ terraform apply -auto-approve
 echo "Game API running at " + $(terraform output public_ip)
 
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
-ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./docker_compose_up.sh $GIT_COMMIT"
-
-echo $(ls)
-echo $(cd scripts && ls)
+ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) ./docker_compose_up.sh $GIT_COMMIT
 
 set -o errexit
 

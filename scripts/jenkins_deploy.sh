@@ -20,7 +20,7 @@ cp *.tf /var/lib/jenkins/terraform/hgop/production
 
 cd /var/lib/jenkins/terraform/hgop/production
 echo $(ls)
-echo $(cd /scripts ls)
+echo $(cd /scripts && ls)
 terraform init # In case terraform is not initialized.
 terraform destroy -auto-approve
 terraform apply -auto-approve
@@ -28,6 +28,7 @@ terraform apply -auto-approve
 echo "Game API running at " + $(terraform output public_ip)
 
 echo $(ls)
+echo $(cd /scripts && ls)
 
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./docker_compose_up.sh $GIT_COMMIT"

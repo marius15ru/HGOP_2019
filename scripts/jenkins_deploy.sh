@@ -23,6 +23,8 @@ terraform apply -auto-approve
 echo "Game API running at " + $(terraform output public_ip)
 
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
+
+scp -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ./scripts/docker_compose_up.sh ubuntu@$(terraform output public_ip):.
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./docker_compose_up.sh $GIT_COMMIT"
 set -o errexit
 

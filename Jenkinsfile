@@ -1,7 +1,6 @@
 node {
     def git = checkout scm
     stage("Clean"){
-        echo 'I solemnly swear that I know not to run this without committing changes I want to keep!'
         sh "cd game_api && git clean -dfxq"
         sh "cd game_api && git stash"
     }

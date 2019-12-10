@@ -1,20 +1,23 @@
 {
-  "name": "Namer",
+  "name": "item_repository",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test:unit": "jest --testRegex \"^.*.unit-test.js$\" --collectCoverage true",
-    "eslint": "node ./node_modules/eslint/bin/eslint.js *.js"
+    "test:unit": "jest --testRegex .*\\.unit-test\\. --collectCoverage true",
+    "eslint": "eslint \"**/*.js\" --ignore-pattern '/node_modules/'",
+    "eslint:fix": "eslint \"**/*.js\" --ignore-pattern '/node_modules/' --fix"
   },
-  "author": "Marius",
+  "author": "Hrafn Orri Hrafnkelsson",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1",
-    "pg": "7.12.1"
+    "express": "^4.17.1",
+    "pg": "^7.14.0"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0"
   }
 }

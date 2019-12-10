@@ -1,26 +1,26 @@
 function newRandom(randomReturnValues) {
-    let i = 0;
-    return {
-        randomInt: (min, max) => {  // eslint-disable-line
-            return randomReturnValues[i++];
-        }
-    };
+  let i = 0;
+  return {
+    randomInt: (min, max) => {
+      return randomReturnValues[i++];
+    },
+  };
 }
 
-test('dealer should should shuffle cards', () => {
-    // Arrange
-    let dependencies = {
-        'random': () => newRandom([2, 1]),
-    };
-    let newDealer = require('./dealer.js');
-    let dealer = newDealer((name) => {
-        return dependencies[name];
-    });
-    let deck = ['a', 'b', 'c'];
+test('dealer should shuffle cards', () => {
+  // Arrange
+  const dependencies = {
+    'random': () => newRandom([2, 1]),
+  };
+  const newDealer = require('./dealer.js');
+  const dealer = newDealer((name) => {
+    return dependencies[name];
+  });
+  const deck = ['a', 'b', 'c'];
 
-    // Act
-    dealer.shuffle(deck);
+  // Act
+  dealer.shuffle(deck);
 
-    // Assert
-    expect(deck).toEqual(['c', 'b', 'a']);
+  // Assert
+  expect(deck).toEqual(['c', 'b', 'a']);
 });

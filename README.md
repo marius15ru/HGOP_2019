@@ -1,4 +1,23 @@
-http://ec2-35-172-215-223.compute-1.amazonaws.com:8080
+# Week2 Solution 2019
 
-docker_compose_up.sh er aldrei búið til og ég veit ekki af hverju.
-Jenkins náði aldrei, af óþekktri ástæðu, að skrá sig inn í docker.io. Þannig að ég bjó til docker_hub_credentials fyrir Jenkins og setti það í Jenkinsfile. Leitin að þessari en óþekkri villu seinkaði mér smá.
+A link to your API should be included [HERE](link)
+
+To setup your local development environment run:
+```
+bash ./scripts/setup_local_dev_environment.sh
+```
+
+Run the API locally with docker-compose:
+```
+bash ./scripts/start_local.sh
+```
+
+Deploy to AWS (NOTE: terraform credentials need to be in your `~/.aws/credentials` file):
+- Initialize the working directory with the Terraform configuration.
+    ```
+    terraform init
+    ```
+- Run the deploy script:
+    ```
+    bash ./scripts/deploy.sh
+    ```

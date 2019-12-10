@@ -1,20 +1,26 @@
 node {
     def git = checkout scm
-    stage("Clean"){
-        sh "cd game_api && git clean -dfxq"
-        sh "cd game_api && git stash"
+    stage("Clean") {
+        sh "git clean -dfxq"
+        sh "git stash"
     }
-    stage("Setup"){
-        sh "cd game_api && npm install"
+    stage("Setup") {
+        dir("game_api") {
+            sh "npm install"
+        }
     }
-    stage("Lint"){
-        sh "cd game_api && npm run eslint"
+    stage("Lint") {
+        dir("game_api") {
+            sh "npm run eslint"
+        }
+    }
+    stage("Test") {
+        dir("game_api") {
+            sh "npm run test:unit"
+        }
     }
     stage("Build") {
         sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
-        withCredentials([usernamePassword( credentialsId: 'docker_hub_creds', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]){
-            sh "docker login -u $USER -p $PASSWORD"
-        }
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
     }
     stage("Deploy") {

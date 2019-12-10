@@ -4,10 +4,9 @@ WORKDIR /code
 
 COPY package.json package.json
 
-RUN npm install
+RUN npm install --production
 
-COPY database.js database.js
-
-COPY app.js app.js
+# This skips the test files because we have a .dockerignore file defined
+COPY *.js ./
 
 CMD node app.js

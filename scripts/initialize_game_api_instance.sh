@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 echo 'This script installs everything needed to run our API on the instance'
 echo 'and then starts the API.'
 

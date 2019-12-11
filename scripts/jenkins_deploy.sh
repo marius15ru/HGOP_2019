@@ -29,8 +29,8 @@ terraform destroy -auto-approve -var environment=$ENV || exit 1
 terraform apply -auto-approve -var environment=$ENV || exit 1
 
 if [[ $ENV != 'production' ]]; then
-    sh "API_URL=" + $(terraform output public_ip) + ":3000 npm run test:capacity"
-    sh "terraform destroy -auto-approve -var environment=$ENV || exit 1"
+    API_URL=$(terraform output public_ip):3000 npm run test:$TEST_KIND
+    terraform destroy -auto-approve -var environment=$ENV || exit 1
 fi
 
 echo "Game API running at " + $(terraform output public_ip)

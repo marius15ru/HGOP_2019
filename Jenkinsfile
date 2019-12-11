@@ -33,30 +33,12 @@ node {
     }
 
     stage("API Test") {
-        script {
-            env.TEST_ENV = 'apitest'
-        }
-        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
-        dir("game_api") {
-            sh "API_URL=http://localhost:3000 npm run test:api"
-        }
-        dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
-            sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"
-        }
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} api"
     }
     stage("Capacity Test") {
-        script {
-            env.TEST_ENV = 'capacitytest'
-        }
-        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
-        dir("game_api") {
-            sh "API_URL=http://localhost:3000 npm run test:capacity"
-        }
-        dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
-            sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"
-        }
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} capacity"
     }
     stage("Deploy") {
-        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} production"
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT}"
     }
 }

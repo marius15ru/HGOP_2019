@@ -2,7 +2,13 @@
 
 set -euxo pipefail
 
-GIT_COMMIT=$1 ENV=$2
+
+GIT_COMMIT=$1 ENV=${2:-$production}
+
+if [[ $ENV != 'production' ]]; then
+    TEST_KIND=$ENV
+    ENV="${ENV}test"
+fi
 
 # We need to move some files around, because of the terraform state limitations.
 mkdir -p /var/lib/jenkins/terraform/hgop/$ENV
@@ -21,6 +27,13 @@ cd /var/lib/jenkins/terraform/hgop/$ENV
 terraform init # In case terraform is not initialized.
 terraform destroy -auto-approve -var environment=$ENV || exit 1
 terraform apply -auto-approve -var environment=$ENV || exit 1
+
+if [[ $ENV != 'production' ]]; then
+    cd game_api/
+    sh "API_URL=" + $(terraform output public_ip) + ":3000 npm run test:capacity"
+    cd /var/lib/jenkins/terraform/hgop/$ENV
+    sh "terraform destroy -auto-approve -var environment=$ENV || exit 1"
+}
 
 echo "Game API running at " + $(terraform output public_ip)
 

@@ -30,7 +30,8 @@ terraform apply -auto-approve -var environment=$ENV || exit 1
 
 if [[ $ENV != 'production' ]]; then
     cd /var/lib/jenkins/workspace/Github_Pipeline_HGOP2019/game_api
-    API_URL=$(terraform output public_ip):3000 npm run test:$TEST_KIND
+    IP=$(terraform output public_ip)
+    API_URL="ec2-${IP//./-}.compute-1.amazonaws.com":3000 npm run test:$TEST_KIND
     cd /var/lib/jenkins/terraform/hgop/$ENV
     terraform destroy -auto-approve -var environment=$ENV || exit 1
 fi

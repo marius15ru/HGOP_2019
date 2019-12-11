@@ -1,3 +1,7 @@
+variable "environment" {
+  type = string
+}
+
 # TODO Comment 2-3 sentences.
 provider "aws" {
   shared_credentials_file = "~/.aws/credentials"
@@ -6,7 +10,7 @@ provider "aws" {
 
 # TODO Comment 2-3 sentences.
 resource "aws_security_group" "game_security_group" {
-  name = "GameSecurityGroup"
+  name = "GameSecurityGroup_${var.environment}"
 
   ingress {
     from_port   = 22
@@ -37,7 +41,7 @@ resource "aws_instance" "game_server" {
   key_name               = "GameKeyPair"
   vpc_security_group_ids = [aws_security_group.game_security_group.id]
   tags = {
-    Name = "GameServer"
+    Name = "GameServer_${var.environment}"
   }
 
   # TODO Comment 1-2 sentences.

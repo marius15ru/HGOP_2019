@@ -94,7 +94,7 @@ module.exports = function(context) {
             if (err) {
               onError(err);
             } else {
-              onSuccess(resresult.rows[0].countult);
+              onSuccess(result.rows[0].count);
             }
             client.end();
           });

@@ -31,7 +31,32 @@ node {
         sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
     }
+
+    stage("API Test") {
+        script {
+            env.TEST_ENV = 'apitest'
+        }
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
+        dir("game_api") {
+            sh "npm run test:api"
+        }
+        dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
+            sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"
+        }
+    }
+    stage("Capacity Test") {
+        script {
+            env.TEST_ENV = 'capacitytest'
+        }
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
+        dir("game_api") {
+            sh "npm run test:capacity"
+        }
+        dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
+            sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"
+        }
+    }
     stage("Deploy") {
-        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT}"
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} production"
     }
 }

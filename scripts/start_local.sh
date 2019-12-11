@@ -2,5 +2,5 @@
 
 set -euxo pipefail
 
-docker build game_api -t {username}/{repo}:dev
-GIT_COMMIT=dev docker-compose up
+docker build game_api -t marius15/hgop:day13
+GIT_COMMIT=day13 docker-compose up

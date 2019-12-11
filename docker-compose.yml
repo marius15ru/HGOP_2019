@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: 'my_postgres_database'
       POSTGRES_USER: 'my_postgres_user'
       POSTGRES_PASSWORD: 'my_postgres_password'
-  my_database_container:
+  my_postgres_container:
     image: postgres
     environment:
       POSTGRES_DB: 'my_postgres_database'

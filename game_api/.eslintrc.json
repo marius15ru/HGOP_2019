@@ -6,6 +6,7 @@
         "node": true
     },
     "extends": [
+        "plugin:react/recommended",
         "google"
     ],
     "globals": {
@@ -28,5 +29,10 @@
             2
         ],
         "require-jsdoc": 0
-    }
+    }, 
+    "settings": {
+        "react": {
+          "version": "latest"
+        }
+      }
 }

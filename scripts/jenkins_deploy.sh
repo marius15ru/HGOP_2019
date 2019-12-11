@@ -33,7 +33,7 @@ if [[ $ENV != 'production' ]]; then
     sh "API_URL=" + $(terraform output public_ip) + ":3000 npm run test:capacity"
     cd /var/lib/jenkins/terraform/hgop/$ENV
     sh "terraform destroy -auto-approve -var environment=$ENV || exit 1"
-}
+fi
 
 echo "Game API running at " + $(terraform output public_ip)
 

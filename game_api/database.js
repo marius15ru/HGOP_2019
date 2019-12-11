@@ -67,11 +67,11 @@ module.exports = function(context) {
           const query = {
             text: 'SELECT count(*) FROM GameResult;',
           };
-          client.query(query, (err) => {
+          client.query(query, (err, result) => {
             if (err) {
               onError(err);
             } else {
-              onSuccess(query);
+              onSuccess(result);
             }
             client.end();
           });
@@ -90,11 +90,11 @@ module.exports = function(context) {
           const query = {
             text: 'SELECT count(*) FROM GameResult WHERE Won = True;',
           };
-          client.query(query, (err) => {
+          client.query(query, (err, result) => {
             if (err) {
               onError(err);
             } else {
-              onSuccess(query);
+              onSuccess(result);
             }
             client.end();
           });
@@ -113,11 +113,11 @@ module.exports = function(context) {
           const query = {
             text: 'SELECT count(*) FROM GameResult WHERE Total = 21;',
           };
-          client.query(query, (err) => {
+          client.query(query, (err, result) => {
             if (err) {
               onError(err);
             } else {
-              onSuccess(query);
+              onSuccess(result);
             }
             client.end();
           });

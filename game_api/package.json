@@ -6,7 +6,8 @@
   "scripts": {
     "test:unit": "jest --testRegex .*\\.unit-test\\. --collectCoverage true",
     "eslint": "eslint \"**/*.js\" --ignore-pattern '/node_modules/'",
-    "eslint:fix": "eslint \"**/*.js\" --ignore-pattern '/node_modules/' --fix"
+    "eslint:fix": "eslint \"**/*.js\" --ignore-pattern '/node_modules/' --fix",
+    "test:api": "jest --testRegex .*\\.api-test\\. --collectCoverage true"
   },
   "author": "Maríus Sævarsson",
   "license": "ISC",

@@ -26,13 +26,4 @@ node {
     stage("Deploy") {
         sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT}"
     }
-    sh "npm run test:unit" # below this line
-    step([
-        $class: 'CloverPublisher',
-        cloverReportDir: 'coverage',
-        cloverReportFileName: 'clover.xml',
-        healthyTarget: [methodCoverage: 80, conditionalCoverage: 80, statementCoverage: 80],
-        unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
-        failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
-    ])
 }

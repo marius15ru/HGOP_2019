@@ -71,7 +71,7 @@ module.exports = function(context) {
             if (err) {
               onError(err);
             } else {
-              onSuccess(result);
+              onSuccess(result.rows[0].count);
             }
             client.end();
           });
@@ -94,7 +94,7 @@ module.exports = function(context) {
             if (err) {
               onError(err);
             } else {
-              onSuccess(result);
+              onSuccess(resresult.rows[0].countult);
             }
             client.end();
           });
@@ -117,7 +117,7 @@ module.exports = function(context) {
             if (err) {
               onError(err);
             } else {
-              onSuccess(result);
+              onSuccess(result.rows[0].count);
             }
             client.end();
           });

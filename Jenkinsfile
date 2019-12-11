@@ -38,7 +38,7 @@ node {
         }
         sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
         dir("game_api") {
-            sh "npm run test:api"
+            sh "API_URL=http://localhost:3000 npm run test:api"
         }
         dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
             sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"
@@ -50,7 +50,7 @@ node {
         }
         sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} ${env.TEST_ENV}"
         dir("game_api") {
-            sh "npm run test:capacity"
+            sh "API_URL=http://localhost:3000 npm run test:capacity"
         }
         dir("/var/lib/jenkins/terraform/hgop/${env.TEST_ENV}"){
             sh "terraform destroy -auto-approve -var environment=${env.TEST_ENV} || exit 1"

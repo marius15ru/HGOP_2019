@@ -32,9 +32,11 @@ node {
         sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
     }
     stage("API Test") {
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} apitest"
         sh "./scripts/test_deploy.sh ${git.GIT_COMMIT} api"
     }
     stage("Capacity Test") {
+        sh "./scripts/jenkins_deploy.sh ${git.GIT_COMMIT} capacitytest"
         sh "./scripts/test_deploy.sh ${git.GIT_COMMIT} capacity"
     }
     stage("Deploy") {

@@ -4,6 +4,11 @@ set -euxo pipefail
 
 GIT_COMMIT=$1 ENV=${2:-$production}
 
+if[[ $ENV != "production" ]]; then
+    TEST=$ENV
+    ENV="${ENV}test"
+fi
+
 # We need to move some files around, because of the terraform state limitations.
 mkdir -p /var/lib/jenkins/terraform/hgop/$ENV
 mkdir -p /var/lib/jenkins/terraform/hgop/$ENV/scripts
@@ -26,5 +31,12 @@ echo "Game API running at " + $(terraform output public_ip)
 
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./docker_compose_up.sh $GIT_COMMIT"
+
+if[[ $ENV != "production" ]]; then
+    cd /var/lib/jenkins/workspace/Github_Pipeline_HGOP2019/game_api
+    API_URL=$(terraform output public_dns):3000 npm run test:$TEST
+    cd /var/lib/jenkins/terraform/hgop/$ENV
+    terraform destroy -auto-approve -var environment=$ENV || exit 1
+fi
 
 exit 0

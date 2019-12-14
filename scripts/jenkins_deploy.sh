@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-GIT_COMMIT=$1 ENV=${2:-$production}
+GIT_COMMIT=$1 ENV=${2:-production}
 
 if [[ $ENV != "production" ]]; then
     TEST=$ENV

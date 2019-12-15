@@ -19,15 +19,6 @@ module.exports = function(context) {
         console.log('failed to connect to postgres!');
       } else {
         console.log('successfully connected to postgres!');
-        client.query('CREATE TABLE IF NOT EXISTS GameResult (ID SERIAL PRIMARY KEY, Won BOOL NOT NULL,' +
-        ' Score INT NOT NULL, Total INT NOT NULL, InsertDate TIMESTAMP NOT NULL);', (err) => {
-          if (err) {
-            console.log('error creating game result table!');
-          } else {
-            console.log('successfully created game result table!');
-          }
-          client.end();
-        });
       }
     });
   }, 5000);
@@ -41,7 +32,7 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'INSERT INTO GameResult(Won, Score, Total, InsertDate) VALUES($1, $2, $3, CURRENT_TIMESTAMP);',
+            text: 'INSERT INTO "GameResult" ("Won", "Score", "Total", "InsertDate") VALUES($1, $2, $3, CURRENT_TIMESTAMP);',
             values: [won, score, total],
           };
           client.query(query, (err) => {
@@ -65,7 +56,7 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'SELECT count(*) FROM GameResult;',
+            text: 'SELECT count(*) FROM "GameResult";'
           };
           client.query(query, (err, result) => {
             if (err) {
@@ -88,7 +79,7 @@ module.exports = function(context) {
           client.end(0);
         } else {
           const query = {
-            text: 'SELECT count(*) FROM GameResult WHERE Won = True;',
+            text: 'SELECT count(*) FROM "GameResult" WHERE "Won" = True;'
           };
           client.query(query, (err, result) => {
             if (err) {
@@ -111,7 +102,7 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'SELECT count(*) FROM GameResult WHERE Total = 21;',
+            text: 'SELECT count(*) FROM "GameResult" WHERE "Total" = 21;'
           };
           client.query(query, (err, result) => {
             if (err) {

@@ -1,7 +1,7 @@
 version: '3'
 services:
   game_api:
-    image: marius15/hgop:${GIT_COMMIT}
+    image: marius15/game_api:${GIT_COMMIT}
     ports:
     - '3000:3000'
     depends_on:
@@ -18,3 +18,13 @@ services:
       POSTGRES_DB: 'my_postgres_database'
       POSTGRES_USER: 'my_postgres_user'
       POSTGRES_PASSWORD: 'my_postgres_password'
+  game_client:
+    image: marius15/game_client:${GIT_COMMIT}
+    ports:
+    - '4000:4000'
+    depends_on:
+    - game_api
+    environment:
+      PORT: 4000
+      API_PORT: 3000
+      API_URL: ${API_URL}

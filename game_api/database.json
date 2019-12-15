@@ -1,0 +1,13 @@
+{
+    "pg": {
+      "driver": "pg",
+      "host": "my_postgres_container",
+      "database": "my_postgres_database",
+      "user": "my_postgres_user",
+      "password": "my_postgres_password",
+      "schema": "postgres",
+      "port": 5432,
+      "max": 10,
+      "idleTimeoutMillis": 30000
+    }
+  }

@@ -1,1 +1,4 @@
 *.unit-test.js
+*.api-test.js
+*.capacity-test.js
+*.lib-test.js

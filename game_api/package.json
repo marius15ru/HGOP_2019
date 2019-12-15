@@ -8,11 +8,14 @@
     "eslint": "eslint \"**/*.js\" --ignore-pattern '/node_modules/'",
     "eslint:fix": "eslint \"**/*.js\" --ignore-pattern '/node_modules/' --fix",
     "test:api": "jest --testRegex .*\\.api-test\\. --collectCoverage true",
-    "test:capacity": "jest --testRegex .*\\.capacity-test\\. --collectCoverage true"
+    "test:capacity": "jest --testRegex .*\\.capacity-test\\. --collectCoverage true",
+    "migratedb:pg": "db-migrate --verbose --env pg --config ./database.json --migrations-dir ./migrations up"
   },
   "author": "Maríus Sævarsson",
   "license": "ISC",
   "dependencies": {
+    "db-migrate": "^0.11.6",
+    "db-migrate-pg": "^1.0.0",
     "express": "^4.17.1",
     "pg": "^7.14.0"
   },

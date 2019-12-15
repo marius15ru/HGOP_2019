@@ -20,7 +20,7 @@ module.exports = {
       'deck': deck,
       'dealer': dealer,
       'server': server,
-      'random': random,
+      'random': random
     });
   },
 };

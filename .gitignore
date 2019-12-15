@@ -105,3 +105,8 @@ dist
 
 .terraform/
 terraform.tfstate*
+test/
+
+game_client/node_modules
+game_client/dist
+game_client/.cache

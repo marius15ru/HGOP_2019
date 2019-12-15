@@ -16,8 +16,8 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function(db) {
   return db.createTable("GameResult", {
-    ID: { type: "int", primaryKey: true, autoIncrement: true },
-    Won: { type: "boolean", notNull: true },
+    ID:    { type: "int", primaryKey: true, autoIncrement: true },
+    Won:   { type: "boolean", notNull: true },
     Score: { type: "int", notNull: true },
     Total: { type: "int", notNull: true }
   });

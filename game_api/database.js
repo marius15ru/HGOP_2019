@@ -32,7 +32,8 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'INSERT INTO "GameResult" ("Won", "Score", "Total", "InsertDate") VALUES($1, $2, $3, CURRENT_TIMESTAMP);',
+            text: 'INSERT INTO "GameResult" ("Won", "Score", "Total", "InsertDate") ' +
+                      'VALUES($1, $2, $3, CURRENT_TIMESTAMP);',
             values: [won, score, total],
           };
           client.query(query, (err) => {
@@ -56,7 +57,7 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'SELECT count(*) FROM "GameResult";'
+            text: 'SELECT count(*) FROM "GameResult";',
           };
           client.query(query, (err, result) => {
             if (err) {
@@ -79,7 +80,7 @@ module.exports = function(context) {
           client.end(0);
         } else {
           const query = {
-            text: 'SELECT count(*) FROM "GameResult" WHERE "Won" = True;'
+            text: 'SELECT count(*) FROM "GameResult" WHERE "Won" = True;',
           };
           client.query(query, (err, result) => {
             if (err) {
@@ -102,7 +103,7 @@ module.exports = function(context) {
           client.end();
         } else {
           const query = {
-            text: 'SELECT count(*) FROM "GameResult" WHERE "Total" = 21;'
+            text: 'SELECT count(*) FROM "GameResult" WHERE "Total" = 21;',
           };
           client.query(query, (err, result) => {
             if (err) {

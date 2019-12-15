@@ -22,6 +22,9 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": [
+        "migrations/"
+    ],
     "rules": {
         "max-len": [
             1,

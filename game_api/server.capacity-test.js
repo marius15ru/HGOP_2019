@@ -1,6 +1,6 @@
 const helper = require('./server.lib-test.js');
 
-const timeout = 30000; //TODO
+const timeout = 30000; // TODO
 const gameCount = 1000;
 
 const playGames = (url, count, done) => {

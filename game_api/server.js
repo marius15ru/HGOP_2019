@@ -9,7 +9,7 @@ module.exports = function(context) {
   const app = express();
 
   app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Origin', '*');
     next();
   });
 
@@ -28,12 +28,16 @@ module.exports = function(context) {
           // Week 3
           // TODO Explain why we put each consecutive call inside the onSuccess callback of the
           // previous database call, instead of just placing them next to each other.
-          /* 
+          /*
           Answer:
-            So that the functions will return their output in a certain order. 
-            This is useful for when running multiple async functions where one async function is dependent on the output of a previous async function. 
-            With nested callback functions, an inner function will always wait for an outer function to return its variable or finish its task before finishing its run.
-            If they were to be placed next to one another then, assuming they are asynchronous, an earlier function might not finish its run before a later function does, rendering its output useless to the later function.
+            So that the functions will return their output in a certain order.
+            This is useful for when running multiple async functions where one async function is dependent on the
+                output of a previous async function.
+            With nested callback functions, an inner function will always wait for an outer function to return its
+                variable or finish its task before finishing its run.
+            If they were to be placed next to one another then, assuming they are asynchronous, an earlier function
+                might not finish its run before a later function does,
+                rendering its output useless to the later function.
           */
 
           res.statusCode = 200;

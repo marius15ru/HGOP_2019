@@ -2,11 +2,12 @@
 
 set -euxo pipefail
 
-GIT_COMMIT=$1 ENV=${2:-production}
+GIT_COMMIT=$1 TEST=${2:-null}
 
-if [[ $ENV != "production" ]]; then
-    TEST=$ENV
-    ENV="${ENV}test"
+ENV="production"
+
+if [[ $TEST != "null" ]]; then
+    ENV="${TEST}test"
 fi
 
 # We need to move some files around, because of the terraform state limitations.
@@ -32,7 +33,7 @@ echo "Game API running at " + $(terraform output public_ip)
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./docker_compose_up.sh $GIT_COMMIT"
 
-if [[ $ENV != "production" ]]; then
+if [[ $TEST != "null" ]]; then
     API_URL="http://$(terraform output public_ip):3000"
     cd /var/lib/jenkins/workspace/Github_Pipeline_HGOP2019/game_api
     export API_URL

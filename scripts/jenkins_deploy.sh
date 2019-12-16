@@ -37,7 +37,7 @@ ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform o
 if [[ $TEST != "null" ]]; then
     cd /var/lib/jenkins/workspace/Github_Pipeline_HGOP2019/game_api
     export API_URL
-    sleep 15
+    sleep 30
     npm run test:$TEST
     cd /var/lib/jenkins/terraform/hgop/$ENV
     terraform destroy -auto-approve -var environment=$ENV || exit 1
